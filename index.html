@@ -214,7 +214,13 @@
   </section>
 
   <!-- ===== СЕКЦИЯ 4: РЕШЕНИЕ ===== -->
-  <section class="hero-gradient text-white py-16 md:py-24">
+  <section class="hero-gradient text-white pt-28 pb-28 md:pt-36 md:pb-36 relative overflow-hidden">
+    <!-- Wave divider сверху (от bg-white) -->
+    <div class="absolute top-0 left-0 w-full leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-12 md:h-16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 L0,40 C200,0 400,55 600,25 C800,0 1000,45 1200,20 L1200,0 Z" fill="#ffffff"/>
+      </svg>
+    </div>
     <div class="max-w-6xl mx-auto px-4">
       <div class="text-center mb-14">
         <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 leading-tight">
@@ -282,6 +288,12 @@
         </a>
         <p class="text-sm text-gray-400 mt-2">Без карты · 14 дней бесплатно · Отмена в 1 клик</p>
       </div>
+    </div>
+    <!-- Wave divider снизу (→ bg-gray-50) -->
+    <div class="absolute bottom-0 left-0 w-full leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-12 md:h-16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,60 C200,0 400,55 600,30 C800,5 1000,50 1200,20 L1200,60 Z" fill="#F9FAFB"/>
+      </svg>
     </div>
   </section>
 
