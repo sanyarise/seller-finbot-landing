@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary Meta Tags -->
+  <title>Калькулятор комиссий Wildberries и Ozon 2026 — расчёт прибыли</title>
+  <meta name="description" content="Бесплатный онлайн-калькулятор комиссий WB и Ozon. Рассчитайте реальную прибыль, маржу и ROI по вашему товару с учётом комиссий, логистики, возвратов и налогов.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="author" content="Seller FinBot">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://seller-finbot.ru/calculator/">
+
+  <!-- Language -->
+  <meta http-equiv="content-language" content="ru">
+  <link rel="alternate" hreflang="ru" href="https://seller-finbot.ru/calculator/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seller-finbot.ru/calculator/">
+  <meta property="og:title" content="Калькулятор комиссий Wildberries и Ozon 2026 — расчёт прибыли">
+  <meta property="og:description" content="Бесплатный онлайн-калькулятор комиссий WB и Ozon. Рассчитайте реальную прибыль, маржу и ROI по вашему товару.">
+  <meta property="og:image" content="https://seller-finbot.ru/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Seller FinBot">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Калькулятор комиссий Wildberries и Ozon 2026 — расчёт прибыли">
+  <meta name="twitter:description" content="Бесплатный онлайн-калькулятор комиссий WB и Ozon. Рассчитайте реальную прибыль, маржу и ROI.">
+  <meta name="twitter:image" content="https://seller-finbot.ru/og-image.svg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Compiled Tailwind CSS + self-hosted Inter font -->
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Schema.org: WebApplication (Calculator) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Калькулятор комиссий Wildberries и Ozon",
+    "url": "https://seller-finbot.ru/calculator/",
+    "description": "Бесплатный онлайн-калькулятор комиссий WB и Ozon. Рассчитайте реальную прибыль, маржу и ROI по вашему товару с учётом комиссий, логистики, возвратов и налогов.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "RUB"
+    }
+  }
+  </script>
+
+  <!-- Schema.org: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://seller-finbot.ru/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Калькулятор комиссий",
+        "item": "https://seller-finbot.ru/calculator/"
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Calculator-specific styles */
+    .tab-active {
+      background-color: #1A73E8;
+      color: #fff;
+    }
+    .tab-inactive {
+      background-color: rgba(26, 115, 232, 0.1);
+      color: #1A73E8;
+    }
+    .tab-inactive:hover {
+      background-color: rgba(26, 115, 232, 0.2);
+    }
+    .calc-input {
+      width: 100%;
+      padding: 0.625rem 0.875rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #111827;
+      background: #fff;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+    .calc-input:focus {
+      outline: none;
+      border-color: #1A73E8;
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+    }
+    .calc-select {
+      width: 100%;
+      padding: 0.625rem 0.875rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #111827;
+      background: #fff;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      padding-right: 2.5rem;
+    }
+    .calc-select:focus {
+      outline: none;
+      border-color: #1A73E8;
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+    }
+    .calc-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 0.375rem;
+    }
+    .calc-hint {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 0.25rem;
+    }
+    .result-card {
+      transition: all 0.3s ease;
+    }
+    .bar-segment {
+      transition: width 0.5s ease;
+      min-width: 0;
+    }
+    .profit-positive { color: #10B981; }
+    .profit-negative { color: #EF4444; }
+    .margin-good { color: #10B981; }
+    .margin-medium { color: #F59E0B; }
+    .margin-bad { color: #EF4444; }
+    .custom-commission-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .custom-commission-input {
+      width: 5rem;
+      padding: 0.625rem 0.5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      text-align: center;
+      color: #111827;
+      background: #fff;
+      font-family: 'Inter', sans-serif;
+    }
+    .custom-commission-input:focus {
+      outline: none;
+      border-color: #1A73E8;
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 text-base leading-relaxed">
+
+  <!-- ===== HERO / HEADER ===== -->
+  <header class="hero-gradient text-white relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 pb-28 md:pb-36">
+      <!-- Nav -->
+      <nav class="flex items-center justify-between mb-10 md:mb-14">
+        <div class="flex items-center gap-3">
+          <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-colors">
+            <span class="text-3xl">💹</span>
+            <span class="font-extrabold text-2xl tracking-tight">seller-finbot</span>
+          </a>
+        </div>
+        <a
+          href="/"
+          class="hidden md:inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-medium"
+        >
+          &larr; Назад на главную
+        </a>
+      </nav>
+
+      <!-- Breadcrumbs -->
+      <div class="flex items-center gap-2 text-sm text-gray-400 mb-8">
+        <a href="/" class="hover:text-white transition-colors">Главная</a>
+        <span>&rarr;</span>
+        <span class="text-white">Калькулятор комиссий</span>
+      </div>
+
+      <div class="max-w-4xl">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
+          Калькулятор комиссий<br class="hidden md:block"> Wildberries и Ozon <span class="text-yellow-300">2026</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl">
+          Рассчитайте реальную прибыль по вашему товару с учётом комиссий маркетплейса, логистики, возвратов и налогов. Бесплатно и без регистрации.
+        </p>
+      </div>
+    </div>
+    <!-- Wave divider -->
+    <div class="absolute bottom-0 left-0 w-full leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-12 md:h-16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,60 C200,0 400,55 600,30 C800,5 1000,50 1200,20 L1200,60 Z" fill="#F9FAFB"/>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ===== CALCULATOR SECTION ===== -->
+  <section class="bg-gray-50 py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-4">
+
+      <!-- Marketplace Tabs -->
+      <div class="flex justify-center mb-10">
+        <div class="inline-flex rounded-2xl overflow-hidden border-2 border-brand">
+          <button id="tab-wb" onclick="switchMarketplace('wb')" class="tab-active px-8 py-3 font-bold text-lg transition-colors">
+            Wildberries
+          </button>
+          <button id="tab-ozon" onclick="switchMarketplace('ozon')" class="tab-inactive px-8 py-3 font-bold text-lg transition-colors">
+            Ozon
+          </button>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+
+        <!-- LEFT: Input Form -->
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+          <h2 class="text-xl font-bold text-gray-900 mb-6">Параметры товара</h2>
+
+          <!-- Category -->
+          <div class="mb-5">
+            <label class="calc-label" for="category">Категория товара</label>
+            <div class="custom-commission-wrapper">
+              <div class="flex-1">
+                <select id="category" class="calc-select" onchange="onCategoryChange()">
+                </select>
+              </div>
+              <div class="flex items-center gap-1">
+                <input type="number" id="customCommission" class="custom-commission-input" placeholder="%" min="0" max="100" step="0.5" oninput="onCustomCommissionInput()">
+                <span class="text-sm text-gray-500">%</span>
+              </div>
+            </div>
+            <p class="calc-hint">Комиссия: <span id="commissionDisplay" class="font-semibold text-gray-700">19.5%</span> · Или введите свой %</p>
+          </div>
+
+          <!-- Price -->
+          <div class="mb-5">
+            <label class="calc-label" for="price">Цена продажи</label>
+            <div class="relative">
+              <input type="number" id="price" class="calc-input" placeholder="Например: 2500" min="0" step="1" oninput="calculate()">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm select-none" style="transform: translateY(-50%);">&#8381;</span>
+            </div>
+          </div>
+
+          <!-- Cost -->
+          <div class="mb-5">
+            <label class="calc-label" for="cost">Себестоимость</label>
+            <div class="relative">
+              <input type="number" id="cost" class="calc-input" placeholder="Например: 800" min="0" step="1" oninput="calculate()">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm select-none" style="transform: translateY(-50%);">&#8381;</span>
+            </div>
+          </div>
+
+          <!-- Logistics -->
+          <div class="mb-5">
+            <label class="calc-label" for="logistics">Логистика</label>
+            <div class="relative">
+              <input type="number" id="logistics" class="calc-input" placeholder="Например: 150" min="0" step="1" oninput="calculate()">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm select-none" style="transform: translateY(-50%);">&#8381;</span>
+            </div>
+            <p class="calc-hint" id="logisticsHint">WB FBO: обычно 50-250 &#8381; в зависимости от габаритов</p>
+          </div>
+
+          <!-- Returns -->
+          <div class="mb-5">
+            <label class="calc-label" for="returns">Процент возвратов</label>
+            <div class="relative">
+              <input type="number" id="returns" class="calc-input" value="5" min="0" max="100" step="0.5" oninput="calculate()">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm select-none" style="transform: translateY(-50%);">%</span>
+            </div>
+            <p class="calc-hint">Средний процент возвратов по категории</p>
+          </div>
+
+          <!-- Tax regime -->
+          <div class="mb-5">
+            <label class="calc-label" for="taxRegime">Налоговый режим</label>
+            <select id="taxRegime" class="calc-select" onchange="calculate()">
+              <option value="usn6" selected>УСН 6% (доходы)</option>
+              <option value="usn15">УСН 15% (доходы минус расходы)</option>
+              <option value="patent">Патент (0%)</option>
+              <option value="npd">НПД / Самозанятый (6%)</option>
+            </select>
+          </div>
+
+          <!-- Additional expenses -->
+          <div class="mb-2">
+            <label class="calc-label" for="extra">Дополнительные расходы</label>
+            <div class="relative">
+              <input type="number" id="extra" class="calc-input" placeholder="Упаковка, реклама и т.д." min="0" step="1" value="0" oninput="calculate()">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm select-none" style="transform: translateY(-50%);">&#8381;</span>
+            </div>
+            <p class="calc-hint">Упаковка, реклама, фулфилмент и другие расходы на единицу</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Results -->
+        <div>
+          <!-- Main result -->
+          <div id="resultMain" class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-6">Результат расчёта</h2>
+
+            <!-- Profit -->
+            <div class="text-center mb-6">
+              <div class="text-sm text-gray-500 mb-1">Чистая прибыль</div>
+              <div id="profitValue" class="text-4xl md:text-5xl font-extrabold profit-positive">0 &#8381;</div>
+              <div class="flex justify-center gap-6 mt-3">
+                <div>
+                  <span class="text-sm text-gray-500">Маржа</span>
+                  <div id="marginValue" class="text-lg font-bold margin-good">0%</div>
+                </div>
+                <div>
+                  <span class="text-sm text-gray-500">ROI</span>
+                  <div id="roiValue" class="text-lg font-bold text-brand">0%</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Breakdown -->
+            <div class="space-y-3">
+              <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                <span class="text-gray-600 text-sm">Цена продажи</span>
+                <span id="rowPrice" class="font-semibold text-gray-900">0 &#8381;</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                <span class="text-gray-600 text-sm">Комиссия маркетплейса</span>
+                <span id="rowCommission" class="font-semibold text-red-500">-0 &#8381;</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                <span class="text-gray-600 text-sm">Логистика</span>
+                <span id="rowLogistics" class="font-semibold text-red-500">-0 &#8381;</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                <span class="text-gray-600 text-sm">Стоимость возвратов</span>
+                <span id="rowReturns" class="font-semibold text-red-500">-0 &#8381;</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                <span class="text-gray-600 text-sm">Себестоимость</span>
+                <span id="rowCost" class="font-semibold text-red-500">-0 &#8381;</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                <span class="text-gray-600 text-sm" id="taxLabel">Налог УСН 6%</span>
+                <span id="rowTax" class="font-semibold text-red-500">-0 &#8381;</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                <span class="text-gray-600 text-sm">Доп. расходы</span>
+                <span id="rowExtra" class="font-semibold text-red-500">-0 &#8381;</span>
+              </div>
+              <div class="flex justify-between items-center py-2">
+                <span class="font-bold text-gray-900">Чистая прибыль</span>
+                <span id="rowProfit" class="font-bold text-lg profit-positive">0 &#8381;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bar chart -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+            <h3 class="text-sm font-bold text-gray-900 mb-4">Куда уходит каждый рубль из цены</h3>
+            <!-- Stacked bar -->
+            <div class="w-full h-10 rounded-xl overflow-hidden flex" id="stackedBar">
+              <div class="bar-segment bg-profit" id="barProfit" style="width:0%" title="Прибыль"></div>
+              <div class="bar-segment" id="barCommission" style="width:0%;background:#EF4444" title="Комиссия"></div>
+              <div class="bar-segment" id="barLogistics" style="width:0%;background:#F59E0B" title="Логистика"></div>
+              <div class="bar-segment" id="barReturns" style="width:0%;background:#F97316" title="Возвраты"></div>
+              <div class="bar-segment" id="barCost" style="width:0%;background:#6366F1" title="Себестоимость"></div>
+              <div class="bar-segment" id="barTax" style="width:0%;background:#8B5CF6" title="Налог"></div>
+              <div class="bar-segment" id="barExtra" style="width:0%;background:#A78BFA" title="Доп. расходы"></div>
+            </div>
+            <!-- Legend -->
+            <div class="flex flex-wrap gap-x-4 gap-y-2 mt-4 text-xs text-gray-600">
+              <div class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded" style="background:#10B981"></span> Прибыль <span id="legendProfit" class="font-semibold">0%</span></div>
+              <div class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded" style="background:#EF4444"></span> Комиссия <span id="legendCommission" class="font-semibold">0%</span></div>
+              <div class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded" style="background:#F59E0B"></span> Логистика <span id="legendLogistics" class="font-semibold">0%</span></div>
+              <div class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded" style="background:#F97316"></span> Возвраты <span id="legendReturns" class="font-semibold">0%</span></div>
+              <div class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded" style="background:#6366F1"></span> Себестоимость <span id="legendCost" class="font-semibold">0%</span></div>
+              <div class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded" style="background:#8B5CF6"></span> Налог <span id="legendTax" class="font-semibold">0%</span></div>
+              <div class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded" style="background:#A78BFA"></span> Доп. расходы <span id="legendExtra" class="font-semibold">0%</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave divider -->
+  <div class="relative">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-12 md:h-16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 C200,55 400,5 600,30 C800,55 1000,10 1200,40 L1200,60 L0,60 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+
+  <!-- ===== SEO TEXT SECTION ===== -->
+  <section class="bg-white py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8">Как рассчитать прибыль на маркетплейсах</h2>
+
+      <div class="space-y-8 text-gray-700 leading-relaxed">
+        <div>
+          <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Комиссия Wildberries: как считается</h3>
+          <p>
+            Wildberries взимает комиссию с каждой проданной единицы товара. Размер комиссии зависит от категории и типа логистики (FBO или FBS). Для FBO (хранение на складе WB) комиссии выше, но логистика проще. В 2025-2026 году WB неоднократно повышал комиссии: по ряду категорий они выросли на 5-10 процентных пунктов. Например, комиссия на одежду и обувь сейчас составляет 29.5%, а на электронику — 19.5%. Помимо комиссии, Wildberries удерживает стоимость логистики (доставка до покупателя и обратно при возврате), а также может начислять штрафы за нарушения упаковки, маркировки и сроков поставки.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Комиссия Ozon: как считается</h3>
+          <p>
+            Ozon использует более сложную систему комиссий, которая зависит от категории товара и схемы продажи (FBO, FBS, rFBS). Комиссии Ozon в среднем ниже, чем у Wildberries: от 3% на ноутбуки до 15% на книги и аксессуары для электроники. Однако к комиссии добавляются расходы на логистику (last mile), обработку возвратов, эквайринг и продвижение. Ozon также регулярно обновляет тарифы, поэтому важно следить за актуальными ставками.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Что входит в расходы селлера</h3>
+          <p>
+            Реальная прибыль продавца на маркетплейсе — это не просто «цена продажи минус себестоимость». В расходы входят: комиссия маркетплейса, логистика (доставка и хранение), стоимость возвратов (вы платите за обратную логистику), упаковка, реклама на площадке, налоги (УСН, патент или НПД) и другие операционные расходы. Наш калькулятор учитывает все эти составляющие, чтобы показать реальную картину.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Как рассчитать реальную прибыль</h3>
+          <p>
+            Формула расчёта: <strong>Прибыль = Цена продажи - Комиссия - Логистика - Возвраты - Себестоимость - Налог - Доп. расходы</strong>. Маржинальность считается как отношение прибыли к цене продажи, а ROI — как отношение прибыли к себестоимости. Здоровая маржинальность для маркетплейсов — от 20%. Если маржа ниже 10%, бизнес находится в зоне риска: любое повышение комиссий или рост процента возвратов может сделать товар убыточным. Используйте калькулятор выше, чтобы проверить свои товары, или попробуйте <a href="https://t.me/SellerFinBot" class="text-brand hover:text-blue-400 font-semibold transition-colors">Seller FinBot</a> для автоматического расчёта по всем товарам из вашего кабинета.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="hero-gradient text-white py-20 md:py-28 relative overflow-hidden">
+    <!-- Wave divider top -->
+    <div class="absolute top-0 left-0 w-full leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-12 md:h-16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 L0,40 C200,0 400,55 600,25 C800,0 1000,45 1200,20 L1200,0 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-6">
+        Устали считать вручную?
+      </h2>
+      <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+        Seller FinBot рассчитывает реальную прибыль автоматически по всем вашим товарам. Подключите магазин за 5 минут — и увидите полную картину.
+      </p>
+
+      <a
+        href="https://t.me/SellerFinBot"
+        class="inline-flex items-center gap-2 bg-brand hover:bg-blue-500 active:bg-blue-700 transition-colors text-white font-bold text-xl px-12 py-5 rounded-2xl shadow-2xl shadow-blue-500/30 mb-5"
+      >
+        Попробовать бесплатно &rarr;
+      </a>
+
+      <p class="text-gray-400 text-sm mb-6">
+        Без карты &middot; 14 дней бесплатно &middot; Работает в Telegram
+      </p>
+    </div>
+    <!-- Wave divider bottom -->
+    <div class="absolute bottom-0 left-0 w-full leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-12 md:h-16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,20 C200,60 400,5 600,35 C800,60 1000,10 1200,40 L1200,60 L0,60 Z" fill="#0F172A"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-dark border-t border-white/10 py-6">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3">
+      <p class="text-gray-500 text-sm">
+        &copy; 2026 seller-finbot &middot;
+        <a href="https://t.me/SellerFinBot" class="text-brand hover:text-blue-400 transition-colors">@SellerFinBot в Telegram</a>
+      </p>
+      <a href="/" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">&larr; Вернуться на главную</a>
+    </div>
+  </footer>
+
+  <!-- ===== STICKY MOBILE CTA ===== -->
+  <div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t shadow-lg md:hidden z-50">
+    <a href="https://t.me/SellerFinBot" class="block w-full text-center bg-brand text-white py-3 rounded-xl font-semibold">
+      Попробовать бесплатно &rarr;
+    </a>
+  </div>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=107082009','ym');
+    ym(107082009,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/107082009" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+
+  <!-- ===== CALCULATOR JAVASCRIPT ===== -->
+  <script>
+    // Commission data
+    const commissions = {
+      wb: [
+        { name: 'Одежда', rate: 29.5 },
+        { name: 'Обувь', rate: 29.5 },
+        { name: 'Бытовая химия', rate: 29.5 },
+        { name: 'Автотовары', rate: 26.5 },
+        { name: 'Сумки и аксессуары', rate: 26.5 },
+        { name: 'Электроника', rate: 19.5 },
+        { name: 'Красота и здоровье', rate: 19.5 },
+        { name: 'Товары для дома', rate: 19.5 },
+        { name: 'Детские товары', rate: 19.5 },
+        { name: 'Зоотовары', rate: 19.5 },
+        { name: 'Спорт и отдых', rate: 19.5 },
+        { name: 'Канцтовары', rate: 19.5 },
+        { name: 'Игрушки', rate: 19.5 },
+        { name: 'Бытовая техника', rate: 15 },
+        { name: 'Мебель', rate: 15 },
+        { name: 'Продукты питания', rate: 14.5 },
+        { name: 'Ювелирные изделия', rate: 14.5 },
+        { name: 'Книги', rate: 14.5 },
+        { name: 'Другое', rate: 19.5 }
+      ],
+      ozon: [
+        { name: 'Ноутбуки', rate: 3 },
+        { name: 'Электроника', rate: 5 },
+        { name: 'Смартфоны', rate: 5 },
+        { name: 'Бытовая техника (крупная)', rate: 5 },
+        { name: 'Бытовая техника (малая)', rate: 5 },
+        { name: 'Детские товары', rate: 5 },
+        { name: 'Зоотовары', rate: 5 },
+        { name: 'Продукты питания', rate: 5 },
+        { name: 'Ювелирные украшения', rate: 5 },
+        { name: 'Игрушки', rate: 6 },
+        { name: 'Одежда и обувь', rate: 8 },
+        { name: 'Автотовары', rate: 8 },
+        { name: 'Строительство и ремонт', rate: 8 },
+        { name: 'Мебель', rate: 8 },
+        { name: 'Спорт', rate: 8 },
+        { name: 'Витамины и БАДы', rate: 8 },
+        { name: 'Красота и здоровье', rate: 10 },
+        { name: 'Дом и сад', rate: 10 },
+        { name: 'Книги', rate: 15 },
+        { name: 'Аксессуары для электроники', rate: 15 },
+        { name: 'Другое', rate: 8 }
+      ]
+    };
+
+    let currentMarketplace = 'wb';
+    let useCustomCommission = false;
+    let calculatorUsedGoalSent = false;
+
+    function switchMarketplace(mp) {
+      currentMarketplace = mp;
+      document.getElementById('tab-wb').className = mp === 'wb' ? 'tab-active px-8 py-3 font-bold text-lg transition-colors' : 'tab-inactive px-8 py-3 font-bold text-lg transition-colors';
+      document.getElementById('tab-ozon').className = mp === 'ozon' ? 'tab-active px-8 py-3 font-bold text-lg transition-colors' : 'tab-inactive px-8 py-3 font-bold text-lg transition-colors';
+
+      // Update logistics hint
+      var hint = document.getElementById('logisticsHint');
+      hint.textContent = mp === 'wb'
+        ? 'WB FBO: обычно 50-250 \u20BD в зависимости от габаритов'
+        : 'Ozon FBO: обычно 40-200 \u20BD в зависимости от габаритов';
+
+      useCustomCommission = false;
+      document.getElementById('customCommission').value = '';
+      populateCategories();
+      calculate();
+    }
+
+    function populateCategories() {
+      var select = document.getElementById('category');
+      var cats = commissions[currentMarketplace];
+      select.innerHTML = '';
+      for (var i = 0; i < cats.length; i++) {
+        var opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = cats[i].name + ' (' + cats[i].rate + '%)';
+        select.appendChild(opt);
+      }
+      updateCommissionDisplay();
+    }
+
+    function onCategoryChange() {
+      useCustomCommission = false;
+      document.getElementById('customCommission').value = '';
+      updateCommissionDisplay();
+      calculate();
+    }
+
+    function onCustomCommissionInput() {
+      var val = document.getElementById('customCommission').value;
+      if (val !== '' && !isNaN(parseFloat(val))) {
+        useCustomCommission = true;
+      } else {
+        useCustomCommission = false;
+      }
+      updateCommissionDisplay();
+      calculate();
+    }
+
+    function getCommissionRate() {
+      if (useCustomCommission) {
+        var val = parseFloat(document.getElementById('customCommission').value);
+        return isNaN(val) ? 0 : val;
+      }
+      var idx = parseInt(document.getElementById('category').value);
+      var cats = commissions[currentMarketplace];
+      return cats[idx] ? cats[idx].rate : 0;
+    }
+
+    function updateCommissionDisplay() {
+      var rate = getCommissionRate();
+      document.getElementById('commissionDisplay').textContent = rate + '%';
+    }
+
+    function formatMoney(n) {
+      if (isNaN(n)) return '0';
+      var sign = n < 0 ? '-' : '';
+      var abs = Math.abs(Math.round(n));
+      var str = abs.toString();
+      var result = '';
+      for (var i = str.length - 1, c = 0; i >= 0; i--, c++) {
+        if (c > 0 && c % 3 === 0) result = ' ' + result;
+        result = str[i] + result;
+      }
+      return sign + result;
+    }
+
+    function calculate() {
+      var price = parseFloat(document.getElementById('price').value) || 0;
+      var cost = parseFloat(document.getElementById('cost').value) || 0;
+      var logistics = parseFloat(document.getElementById('logistics').value) || 0;
+      var returnsPercent = parseFloat(document.getElementById('returns').value) || 0;
+      var taxRegime = document.getElementById('taxRegime').value;
+      var extra = parseFloat(document.getElementById('extra').value) || 0;
+      var commissionRate = getCommissionRate();
+
+      // Calculations
+      var commissionAmount = price * commissionRate / 100;
+      var returnsAmount = price * returnsPercent / 100 * 0.5; // Returns cost approx 50% of price (logistics back + lost margin)
+
+      // Tax calculation
+      var taxAmount = 0;
+      var taxLabelText = '';
+      if (taxRegime === 'usn6') {
+        taxAmount = price * 0.06;
+        taxLabelText = 'Налог УСН 6%';
+      } else if (taxRegime === 'usn15') {
+        var taxBase = price - cost - commissionAmount - logistics - extra;
+        taxAmount = Math.max(0, taxBase * 0.15);
+        taxLabelText = 'Налог УСН 15%';
+      } else if (taxRegime === 'patent') {
+        taxAmount = 0;
+        taxLabelText = 'Налог (Патент)';
+      } else if (taxRegime === 'npd') {
+        taxAmount = price * 0.06;
+        taxLabelText = 'Налог НПД 6%';
+      }
+
+      var profit = price - commissionAmount - logistics - returnsAmount - cost - taxAmount - extra;
+
+      // Update tax label
+      document.getElementById('taxLabel').textContent = taxLabelText;
+
+      // Margin and ROI
+      var margin = price > 0 ? (profit / price * 100) : 0;
+      var roi = cost > 0 ? (profit / cost * 100) : 0;
+
+      // Update profit display
+      var profitEl = document.getElementById('profitValue');
+      profitEl.textContent = formatMoney(profit) + ' \u20BD';
+      profitEl.className = 'text-4xl md:text-5xl font-extrabold ' + (profit >= 0 ? 'profit-positive' : 'profit-negative');
+
+      // Margin display
+      var marginEl = document.getElementById('marginValue');
+      marginEl.textContent = margin.toFixed(1) + '%';
+      if (margin >= 20) {
+        marginEl.className = 'text-lg font-bold margin-good';
+      } else if (margin >= 10) {
+        marginEl.className = 'text-lg font-bold margin-medium';
+      } else {
+        marginEl.className = 'text-lg font-bold margin-bad';
+      }
+
+      // ROI display
+      document.getElementById('roiValue').textContent = roi.toFixed(1) + '%';
+
+      // Breakdown rows
+      document.getElementById('rowPrice').textContent = formatMoney(price) + ' \u20BD';
+      document.getElementById('rowCommission').textContent = '-' + formatMoney(commissionAmount) + ' \u20BD (' + commissionRate + '%)';
+      document.getElementById('rowLogistics').textContent = '-' + formatMoney(logistics) + ' \u20BD';
+      document.getElementById('rowReturns').textContent = '-' + formatMoney(returnsAmount) + ' \u20BD';
+      document.getElementById('rowCost').textContent = '-' + formatMoney(cost) + ' \u20BD';
+      document.getElementById('rowTax').textContent = '-' + formatMoney(taxAmount) + ' \u20BD';
+      document.getElementById('rowExtra').textContent = '-' + formatMoney(extra) + ' \u20BD';
+
+      var rowProfitEl = document.getElementById('rowProfit');
+      rowProfitEl.textContent = formatMoney(profit) + ' \u20BD';
+      rowProfitEl.className = 'font-bold text-lg ' + (profit >= 0 ? 'profit-positive' : 'profit-negative');
+
+      // Stacked bar
+      if (price > 0) {
+        var pctCommission = commissionAmount / price * 100;
+        var pctLogistics = logistics / price * 100;
+        var pctReturns = returnsAmount / price * 100;
+        var pctCost = cost / price * 100;
+        var pctTax = taxAmount / price * 100;
+        var pctExtra = extra / price * 100;
+        var pctProfit = Math.max(0, profit / price * 100);
+
+        // If profit is negative, set to 0 and let the loss absorb into other segments
+        var total = pctCommission + pctLogistics + pctReturns + pctCost + pctTax + pctExtra + pctProfit;
+        if (total > 0) {
+          // Normalize to 100%
+          var factor = 100 / total;
+          pctCommission *= factor;
+          pctLogistics *= factor;
+          pctReturns *= factor;
+          pctCost *= factor;
+          pctTax *= factor;
+          pctExtra *= factor;
+          pctProfit *= factor;
+        }
+
+        document.getElementById('barProfit').style.width = pctProfit.toFixed(1) + '%';
+        document.getElementById('barCommission').style.width = pctCommission.toFixed(1) + '%';
+        document.getElementById('barLogistics').style.width = pctLogistics.toFixed(1) + '%';
+        document.getElementById('barReturns').style.width = pctReturns.toFixed(1) + '%';
+        document.getElementById('barCost').style.width = pctCost.toFixed(1) + '%';
+        document.getElementById('barTax').style.width = pctTax.toFixed(1) + '%';
+        document.getElementById('barExtra').style.width = pctExtra.toFixed(1) + '%';
+
+        // Legend
+        document.getElementById('legendProfit').textContent = pctProfit.toFixed(0) + '%';
+        document.getElementById('legendCommission').textContent = pctCommission.toFixed(0) + '%';
+        document.getElementById('legendLogistics').textContent = pctLogistics.toFixed(0) + '%';
+        document.getElementById('legendReturns').textContent = pctReturns.toFixed(0) + '%';
+        document.getElementById('legendCost').textContent = pctCost.toFixed(0) + '%';
+        document.getElementById('legendTax').textContent = pctTax.toFixed(0) + '%';
+        document.getElementById('legendExtra').textContent = pctExtra.toFixed(0) + '%';
+      }
+
+      // Send Yandex.Metrika goal on first calculation
+      if (price > 0 && cost > 0 && !calculatorUsedGoalSent) {
+        calculatorUsedGoalSent = true;
+        if (typeof ym === 'function') ym(107082009, 'reachGoal', 'calculator_used');
+      }
+    }
+
+    // CTA click goals
+    document.querySelectorAll('a[href="https://t.me/SellerFinBot"]').forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (typeof ym === 'function') ym(107082009, 'reachGoal', 'cta_click');
+      });
+    });
+
+    // Init
+    populateCategories();
+    calculate();
+  </script>
+
+</body>
+</html>
