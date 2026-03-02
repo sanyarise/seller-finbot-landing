@@ -970,6 +970,18 @@
     </a>
   </div>
 
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=107082009','ym');
+    ym(107082009,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/107082009" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+
   <!-- ===== JAVASCRIPT ===== -->
   <script>
     // FAQ accordion
@@ -979,6 +991,8 @@
         const icon = btn.querySelector('.faq-icon');
         answer.classList.toggle('hidden');
         icon.textContent = answer.classList.contains('hidden') ? '+' : '−';
+        // Yandex.Metrika goal
+        if(typeof ym==='function') ym(107082009,'reachGoal','faq_expand');
       });
     });
 
@@ -989,6 +1003,37 @@
         document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior: 'smooth'});
       });
     });
+
+    // CTA click goals
+    document.querySelectorAll('a[href="https://t.me/SellerFinBot"]').forEach(link => {
+      link.addEventListener('click', () => {
+        if(typeof ym==='function') ym(107082009,'reachGoal','cta_click');
+      });
+    });
+
+    // Scroll to pricing goal
+    const pricingEl = document.getElementById('pricing');
+    if(pricingEl) {
+      const po = new IntersectionObserver(entries => {
+        if(entries[0].isIntersecting) {
+          if(typeof ym==='function') ym(107082009,'reachGoal','scroll_to_pricing');
+          po.disconnect();
+        }
+      },{threshold:0.3});
+      po.observe(pricingEl);
+    }
+
+    // Scroll complete goal
+    const footerEl = document.querySelector('footer');
+    if(footerEl) {
+      const fo = new IntersectionObserver(entries => {
+        if(entries[0].isIntersecting) {
+          if(typeof ym==='function') ym(107082009,'reachGoal','scroll_complete');
+          fo.disconnect();
+        }
+      },{threshold:0.1});
+      fo.observe(footerEl);
+    }
   </script>
 
 </body>
