@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Sitemap: https://seller-finbot.ru/sitemap.xml
+
+User-agent: Yandex
+Allow: /
+Host: seller-finbot.ru
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /

@@ -3,50 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary Meta Tags -->
+  <title>Seller FinBot — реальная прибыль на WB и Ozon</title>
   <meta name="description" content="Telegram-бот для селлеров WB и Ozon: реальная прибыль по каждому товару, алерты на изменение комиссий, трекинг штрафов и налоговый калькулятор.">
-  <meta property="og:title" content="seller-finbot — знаешь, сколько ты заработал на WB и Ozon на самом деле?">
-  <meta property="og:description" content="Telegram-бот, который считает реальную прибыль по каждому товару, предупреждает об изменении комиссий и штрафах.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="author" content="Seller FinBot">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://seller-finbot.ru/">
+
+  <!-- Language -->
+  <meta http-equiv="content-language" content="ru">
+  <link rel="alternate" hreflang="ru" href="https://seller-finbot.ru/">
+  <link rel="alternate" hreflang="x-default" href="https://seller-finbot.ru/">
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://t.me/SellerFinBot">
-  <meta property="og:image" content="https://t.me/SellerFinBot/og-image.png">
+  <meta property="og:url" content="https://seller-finbot.ru/">
+  <meta property="og:title" content="Seller FinBot — реальная прибыль на WB и Ozon">
+  <meta property="og:description" content="Telegram-бот: алерты на комиссии, реальная прибыль по товарам, налоги за 2 минуты.">
+  <meta property="og:image" content="https://seller-finbot.ru/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Seller FinBot">
+
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="seller-finbot — финансовый помощник для WB и Ozon">
+  <meta name="twitter:title" content="Seller FinBot — реальная прибыль на WB и Ozon">
   <meta name="twitter:description" content="Алерты на комиссии, реальная прибыль по товарам, налоги за 2 минуты.">
+  <meta name="twitter:image" content="https://seller-finbot.ru/og-image.svg">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <title>seller-finbot — реальная прибыль на WB и Ozon</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: '#1A73E8',
-            profit: '#10B981',
-            alert: '#F59E0B',
-            dark: '#0F172A'
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif']
-          }
+
+  <!-- Compiled Tailwind CSS + self-hosted Inter font -->
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Schema.org: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Seller FinBot",
+    "url": "https://seller-finbot.ru",
+    "logo": "https://seller-finbot.ru/favicon.svg",
+    "description": "Telegram-бот для расчёта юнит-экономики и реальной прибыли товаров на маркетплейсах Wildberries и Ozon.",
+    "sameAs": [
+      "https://t.me/SellerFinBot"
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Seller FinBot",
+    "url": "https://seller-finbot.ru",
+    "description": "Telegram-бот для селлеров WB и Ozon: реальная прибыль по каждому товару, алерты на изменение комиссий, трекинг штрафов и налоговый калькулятор.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Telegram",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Базовый",
+        "price": "990",
+        "priceCurrency": "RUB",
+        "priceValidUntil": "2027-01-01",
+        "description": "Подключение WB + Ozon (1 магазин), алерты на комиссии, трекинг штрафов, юнит-экономика (топ-10), трекинг возвратов, еженедельный дайджест, загрузка себестоимости через CSV",
+        "availability": "https://schema.org/InStock"
+      },
+      {
+        "@type": "Offer",
+        "name": "Расширенный",
+        "price": "1490",
+        "priceCurrency": "RUB",
+        "priceValidUntil": "2027-01-01",
+        "description": "Всё из Базового + до 3 магазинов, юнит-экономика по всем товарам, ABC-анализ, причины убытка, Excel-экспорт, налоговый калькулятор (УСН 6%, УСН 15%, Патент, НПД), what-if калькулятор, приоритетная поддержка",
+        "availability": "https://schema.org/InStock"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1"
+    }
+  }
+  </script>
+
+  <!-- Schema.org: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Это безопасно — давать API-ключ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. API-ключи WB и Ozon имеют разные уровни доступа. Для бота нужен ключ только на чтение — он позволяет получать данные, но не позволяет ничего изменять, делать выводы или управлять товарами. Ключи хранятся в зашифрованном виде (AES-256)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Мне нужен кабинет WB и Ozon одновременно?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Нет. Подключи то, что есть: только WB, только Ozon, или оба."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Как работает пробный период?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "14 дней бесплатно, карта не нужна. После пробного периода выбираешь тариф. Если бот не подошёл — просто не продлеваешь, без штрафов."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Я могу подключить несколько магазинов?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Можно подключить несколько магазинов WB и Ozon — все данные в одном боте."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Насколько актуальны данные?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Данные обновляются раз в несколько часов (частота API маркетплейса). Алерты на изменение комиссий — приходят сразу при обнаружении изменения."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Что такое ABC-анализ и зачем он мне?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Делит товары по вкладу в прибыль. Группа A — 20% позиций, которые дают 80% прибыли. Группа C — товары, которые едят ресурсы без отдачи. Бот считает автоматически."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Как часто приходят алерты на комиссии?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Только когда что-то реально меняется. Не спам — точечные уведомления: «WB изменил комиссию по категории X с 15% до 18%»."
         }
       }
-    }
+    ]
+  }
   </script>
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    .hero-gradient { background: linear-gradient(135deg, #0F172A 0%, #1e3a5f 100%); }
-    .tg-message {
-      background: #1e2b3a;
-      border-left: 3px solid #F59E0B;
-      border-radius: 12px;
-      font-family: 'Inter', monospace;
-    }
-    .pain-card {
-      background: #FEF2F2;
-      border: 1px solid #FECACA;
-    }
-  </style>
 </head>
 <body class="bg-white text-gray-900 text-base leading-relaxed">
 
@@ -78,7 +190,7 @@
           </div>
 
           <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
-            Знаешь, сколько ты заработал на WB и Ozon <span class="text-yellow-300">на самом деле?</span>
+            Юнит-экономика и реальная прибыль на WB и Ozon — <span class="text-yellow-300">знаешь свои цифры?</span>
           </h1>
 
           <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">

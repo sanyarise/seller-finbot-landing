@@ -7,12 +7,24 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to server
+    name: Build & Deploy to server
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build CSS
+        run: npm run build
 
       - name: Validate HTML
         run: |
@@ -25,6 +37,11 @@ jobs:
             exit 1
           fi
           echo "index.html OK, size: $(wc -c < index.html) bytes"
+          if [ ! -f style.css ]; then
+            echo "ERROR: style.css not found (build failed?)"
+            exit 1
+          fi
+          echo "style.css OK, size: $(wc -c < style.css) bytes"
 
       - name: Setup SSH
         run: |
@@ -36,8 +53,17 @@ jobs:
       - name: Deploy via rsync
         run: |
           rsync -avz --delete \
+            --exclude='node_modules/' \
+            --exclude='src/' \
+            --exclude='.github/' \
+            --exclude='.git/' \
+            --exclude='.gitignore' \
+            --exclude='package.json' \
+            --exclude='package-lock.json' \
+            --exclude='tailwind.config.js' \
+            --exclude='README.md' \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
-            index.html favicon.svg \
+            ./ \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
 
       - name: Verify deployment

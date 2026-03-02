@@ -1,0 +1,25 @@
+{
+  "name": "seller-finbot-landing",
+  "version": "1.0.0",
+  "description": "Лендинг для Telegram-бота [seller-finbot](https://t.me/SellerFinBot) — финансовая аналитика для селлеров WB и Ozon.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tailwindcss -i src/input.css -o style.css --minify",
+    "watch": "npx tailwindcss -i src/input.css -o style.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanyarise/seller-finbot-landing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanyarise/seller-finbot-landing/issues"
+  },
+  "homepage": "https://github.com/sanyarise/seller-finbot-landing#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}
