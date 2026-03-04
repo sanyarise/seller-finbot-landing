@@ -299,7 +299,7 @@
               <input type="number" id="returns" class="calc-input" value="5" min="0" max="100" step="0.5" oninput="calculate()">
               <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm select-none" style="transform: translateY(-50%);">%</span>
             </div>
-            <p class="calc-hint">Средний процент возвратов по категории</p>
+            <p class="calc-hint">Средний процент возвратов по категории. Стоимость возврата ≈ 50% от цены (обратная логистика + потери)</p>
           </div>
 
           <!-- Tax regime -->
@@ -627,7 +627,7 @@
     function getCommissionRate() {
       if (useCustomCommission) {
         var val = parseFloat(document.getElementById('customCommission').value);
-        return isNaN(val) ? 0 : val;
+        return isNaN(val) ? 0 : Math.max(0, Math.min(100, val));
       }
       var idx = parseInt(document.getElementById('category').value);
       var cats = commissions[currentMarketplace];
@@ -653,12 +653,12 @@
     }
 
     function calculate() {
-      var price = parseFloat(document.getElementById('price').value) || 0;
-      var cost = parseFloat(document.getElementById('cost').value) || 0;
-      var logistics = parseFloat(document.getElementById('logistics').value) || 0;
-      var returnsPercent = parseFloat(document.getElementById('returns').value) || 0;
+      var price = Math.max(0, parseFloat(document.getElementById('price').value) || 0);
+      var cost = Math.max(0, parseFloat(document.getElementById('cost').value) || 0);
+      var logistics = Math.max(0, parseFloat(document.getElementById('logistics').value) || 0);
+      var returnsPercent = Math.min(100, Math.max(0, parseFloat(document.getElementById('returns').value) || 0));
       var taxRegime = document.getElementById('taxRegime').value;
-      var extra = parseFloat(document.getElementById('extra').value) || 0;
+      var extra = Math.max(0, parseFloat(document.getElementById('extra').value) || 0);
       var commissionRate = getCommissionRate();
 
       // Calculations
@@ -673,8 +673,10 @@
         taxLabelText = 'Налог УСН 6%';
       } else if (taxRegime === 'usn15') {
         var taxBase = price - cost - commissionAmount - logistics - extra;
-        taxAmount = Math.max(0, taxBase * 0.15);
-        taxLabelText = 'Налог УСН 15%';
+        var calcTax = Math.max(0, taxBase * 0.15);
+        var minTax = price * 0.01;
+        taxAmount = Math.max(calcTax, minTax);
+        taxLabelText = calcTax < minTax ? 'Налог УСН 15% (мин. 1%)' : 'Налог УСН 15%';
       } else if (taxRegime === 'patent') {
         taxAmount = 0;
         taxLabelText = 'Налог (Патент)';
@@ -764,6 +766,14 @@
         document.getElementById('legendCost').textContent = pctCost.toFixed(0) + '%';
         document.getElementById('legendTax').textContent = pctTax.toFixed(0) + '%';
         document.getElementById('legendExtra').textContent = pctExtra.toFixed(0) + '%';
+      } else {
+        // Reset bar chart when price = 0
+        var barIds = ['barProfit','barCommission','barLogistics','barReturns','barCost','barTax','barExtra'];
+        var legendIds = ['legendProfit','legendCommission','legendLogistics','legendReturns','legendCost','legendTax','legendExtra'];
+        for (var i = 0; i < barIds.length; i++) {
+          document.getElementById(barIds[i]).style.width = '0%';
+          document.getElementById(legendIds[i]).textContent = '0%';
+        }
       }
 
       // Send Yandex.Metrika goal on first calculation
